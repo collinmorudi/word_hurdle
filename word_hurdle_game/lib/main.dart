@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:word_hurdle_game/word_hurdle_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       builder: EasyLoading.init(),
-      home: const Placeholder(),
+      home: const WordHurdlePage(),
     );
   }
 }
