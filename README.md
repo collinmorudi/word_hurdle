@@ -29,7 +29,7 @@ Players attempt to guess a 6-letter word within a limited number of attempts —
 
 1. **Clone the repo**:
    ```bash
-   git clone https://github.com/yourusername/word_hurdle.git
+   git clone https://github.com/collinmorudi/word_hurdle.git
    cd word_hurdle
 Get dependencies:
 
