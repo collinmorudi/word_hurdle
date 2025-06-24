@@ -13,6 +13,7 @@ class HurdleProvider extends ChangeNotifier {
   String targetWord = "";
   int count = 0;
   final lettersPerRow = 5;
+  int index = 0;
   
   init() {
     totalWords = words.all.where((element) => element.length == 5).toList();  // generate a list of 5 letter words
@@ -32,9 +33,13 @@ class HurdleProvider extends ChangeNotifier {
   inputLetter(String letter) {
     if (count < lettersPerRow) {
       rowInputs.add(letter);
+      hurdleBoard[index] = Wordle(letter: letter);
+      index++;
       count++;
+      notifyListeners();
+      print(rowInputs);
     }
     
-    print(rowInputs);
+    
   }
 }
