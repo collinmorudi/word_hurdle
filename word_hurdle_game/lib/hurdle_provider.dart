@@ -23,7 +23,7 @@ class HurdleProvider extends ChangeNotifier {
   }
 
   generateRandomWord() {
-    totalWords[random.nextInt(totalWords.length)].toUpperCase();
+    targetWord = totalWords[random.nextInt(totalWords.length)].toUpperCase();
     print(targetWord);
   }
 }
