@@ -28,18 +28,21 @@ class _WordHurdlePageState extends State<WordHurdlePage> {
           child: Column(
             children: [
               Expanded(
-                child: Consumer<HurdleProvider>(
-                  builder:(context, provider, child) =>  GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 5,
-                      mainAxisSpacing: 4,
-                      crossAxisSpacing: 4,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.70,
+                  child: Consumer<HurdleProvider>(
+                    builder:(context, provider, child) =>  GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 5,
+                        mainAxisSpacing: 4,
+                        crossAxisSpacing: 4,
+                      ),
+                      itemCount: provider.hurdleBoard.length,
+                      itemBuilder: (context, index) {
+                        final wordle = provider.hurdleBoard[index];
+                        return WordleView(wordle: wordle);
+                      },
                     ),
-                    itemCount: provider.hurdleBoard.length,
-                    itemBuilder: (context, index) {
-                      final wordle = provider.hurdleBoard[index];
-                      return WordleView(wordle: wordle);
-                    },
                   ),
                 ),
               ),
