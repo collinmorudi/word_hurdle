@@ -54,14 +54,18 @@ class VirtualKey extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
+    return Expanded(
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
           backgroundColor: excluded ? Colors.red : Colors.black,
-          foregroundColor: Colors.white),
-      onPressed: () {
-        onPress(letter);
-      },
-      child: Text(letter),
+          foregroundColor: Colors.white,
+          padding: EdgeInsets.zero,
+        ),
+        onPressed: () {
+          onPress(letter);
+        },
+        child: Text(letter),
+      ),
     );
   }
 }
