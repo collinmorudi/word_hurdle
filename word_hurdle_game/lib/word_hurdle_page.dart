@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:word_hurdle_game/hurdle_provider.dart';
+import 'package:word_hurdle_game/keyboard_view.dart';
 import 'package:word_hurdle_game/wordle_view.dart';
 
 class WordHurdlePage extends StatefulWidget {
@@ -41,7 +42,8 @@ class _WordHurdlePageState extends State<WordHurdlePage> {
                     },
                   ),
                 ),
-              )
+              ),
+              KeyboardView(),
             ],
           ),
         ));

@@ -25,14 +25,43 @@ class KeyboardView extends StatelessWidget {
         child: Column(
           children: [
             for (int i = 0; i < keysList.length; i++)
-              {
-                Row(
-                  children: keysList[i].map((e) => null).toList(),
-                ),
-              }
+              Row(
+                children: keysList[i]
+                    .map((e) => VirtualKey(
+                          excluded: false,
+                          letter: e,
+                          onPress: (value) {},
+                        ))
+                    .toList(),
+              ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class VirtualKey extends StatelessWidget {
+  final String letter;
+  final bool excluded;
+  final Function(String) onPress;
+  const VirtualKey({
+    super.key,
+    required this.excluded,
+    required this.letter,
+    required this.onPress,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          backgroundColor: excluded ? Colors.red : Colors.black,
+          foregroundColor: Colors.white),
+      onPressed: () {
+        onPress(letter);
+      },
+      child: Text(letter),
     );
   }
 }
