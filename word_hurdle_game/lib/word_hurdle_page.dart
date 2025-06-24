@@ -31,7 +31,7 @@ class _WordHurdlePageState extends State<WordHurdlePage> {
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.70,
                   child: Consumer<HurdleProvider>(
-                    builder:(context, provider, child) =>  GridView.builder(
+                    builder: (context, provider, child) => GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 5,
                         mainAxisSpacing: 4,
@@ -46,7 +46,14 @@ class _WordHurdlePageState extends State<WordHurdlePage> {
                   ),
                 ),
               ),
-              KeyboardView(),
+              Consumer<HurdleProvider>(
+                builder: (context, provider, child) => KeyboardView(
+                  excludedLetters: provider.excludedLetters,
+                  onPressed: (value) {
+                    provider.inputLetter(value);
+                  },
+                ),
+              ),
             ],
           ),
         ));
