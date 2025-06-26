@@ -21,41 +21,62 @@ class _WordHurdlePageState extends State<WordHurdlePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Word Hurdle"),
-        ),
-        body: Center(
-          child: Column(
-            children: [
-              Expanded(
-                child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.70,
-                  child: Consumer<HurdleProvider>(
-                    builder: (context, provider, child) => GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 5,
-                        mainAxisSpacing: 4,
-                        crossAxisSpacing: 4,
-                      ),
-                      itemCount: provider.hurdleBoard.length,
-                      itemBuilder: (context, index) {
-                        final wordle = provider.hurdleBoard[index];
-                        return WordleView(wordle: wordle);
-                      },
+      appBar: AppBar(
+        title: Text("Word Hurdle"),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Expanded(
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.70,
+                child: Consumer<HurdleProvider>(
+                  builder: (context, provider, child) => GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 5,
+                      mainAxisSpacing: 4,
+                      crossAxisSpacing: 4,
                     ),
+                    itemCount: provider.hurdleBoard.length,
+                    itemBuilder: (context, index) {
+                      final wordle = provider.hurdleBoard[index];
+                      return WordleView(wordle: wordle);
+                    },
                   ),
                 ),
               ),
-              Consumer<HurdleProvider>(
-                builder: (context, provider, child) => KeyboardView(
-                  excludedLetters: provider.excludedLetters,
-                  onPressed: (value) {
-                    provider.inputLetter(value);
-                  },
+            ),
+            Consumer<HurdleProvider>(
+              builder: (context, provider, child) => KeyboardView(
+                excludedLetters: provider.excludedLetters,
+                onPressed: (value) {
+                  provider.inputLetter(value);
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Consumer<HurdleProvider>(
+                builder: (context, provider, child) => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        provider.deleteLetter();
+                      },
+                      child: Text("DELETE"),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: Text("SUBMIT"),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ));
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
